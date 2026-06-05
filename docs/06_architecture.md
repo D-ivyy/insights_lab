@@ -99,15 +99,31 @@ sequenceDiagram
     CL-->>BD: validated insight -> report / card / account note
 ```
 
-## 5. Skill vs Agent (terminology)
+## 5. Terminology — Package · Skill · Agent · Project · Tool
+
+The pieces have distinct names and are easy to conflate — the v0 test docs say "load into a Claude **project**/session" while this doc says "**skill**," and they are NOT the same thing. The glossary:
 
 | Term | What it is | In our stack |
 |---|---|---|
-| **Skill** | a packaged capability (instruction + knowledge + procedure + eval), loaded on demand | one resource package; maps ~1:1 to a **Claude Agent Skill** (`SKILL.md` + bundled files) |
-| **Agent** | a running session that has loaded a skill + the tools | the BizDev Claude session behaving as an "ENSO analyst" |
-| **Tool** | a single callable function (data or discovery) | the MCP data tools + `find_methodology` |
+| **Methodology resource / package** | the folder of SOURCE files we author (`resource.yml` · `knowledge.md` · `prompt_projection.md` · `resource.md` · `data_requirements.md` · `examples/` · `test_runs/`) | the **authoring** unit — lives in the repo at `resources/<domain>/<package>/` |
+| **Skill** | the published, loadable capability **compiled from** a package — a **Claude Agent Skill**: a `SKILL.md` (`name` + `description` + body) plus bundled files, loaded on demand | the **served** unit: `package → publish → skill` |
+| **Agent** | a running Claude session that has loaded a skill + the MCP tools | the BizDev session behaving as an "ENSO analyst" |
+| **Claude Project** | a claude.ai workspace (custom instructions + attached files) | a v0 **manual-testing vehicle** (paste the projection in) — NOT the target delivery; the target is the discoverable Skill |
+| **Tool** | a single callable function | the MCP data tools + `find_methodology` |
 
-**Skill = the noun we build and store. Agent = the verb, a session running the skill.** Name the packages **"InfraSure Insight Skills."**
+Don't confuse a *Claude Project* (a testing workspace) with **the InfraSure Insights project** (the whole initiative), nor a *skill* with the *package* it is built from.
+
+**The relationship in one line — and it is the whole stack:**
+
+```text
+PACKAGE (source, many files) ──publish──▶ SKILL (served: SKILL.md + bundled files)
+   ▲ authoring unit                              │ loaded by a session = AGENT, which calls TOOLS
+   └ we author this                              └ this is what BizDev's Claude discovers + runs
+```
+
+**How the count grows:** one skill = one package = a small **fixed** set of files (each a different job, §6). The catalog grows by **more packages** (drought, wildfire, curtailment…), *not* by fatter packages.
+
+**Naming:** a package/slug is snake_case (`el_nino_enso`); the published Skill `name` is its kebab-case form (`el-nino-enso`) per the Claude Skill spec (lowercase + hyphens, ≤64 chars). Discovery matches on the Skill **`description`**, so that field must say *what it does and when to use it*.
 
 ## 6. Artifact Roles (which file feeds what)
 
@@ -148,13 +164,12 @@ find_methodology(query | domain | family | actor)
 get_methodology(slug)
    → returns the skill payload (prompt_projection + knowledge.md + example)
 
-slug = resource.yml.identity.slug — the single get_methodology resolution key.
-       The source folder name may differ and is NEVER the key; the publish step MUST
-       assert folder name == identity.slug. (Today they diverge: folder el_nino_enso vs
-       slug el_nino_enso_exposure — reconcile before publish; see Open Decision 6.)
+slug = resource.yml.identity.slug — the single get_methodology resolution key, and the
+       source folder name MUST equal it (the publish step asserts this).
+       Canonical today: folder == slug == el_nino_enso. (Resolved — see Open Decision 6.)
 ```
 
-Example: `find_methodology("el nino solar exposure")` → returns the **ENSO Exposure** skill (slug `el_nino_enso_exposure`; domain `weather_and_climate`; family `exposure`; drivers `enso, irradiance`). This is why the taxonomy exists — it is the discovery index, not decoration.
+Example: `find_methodology("el nino solar exposure")` → returns the **ENSO Exposure** skill (slug `el_nino_enso`; domain `weather_and_climate`; family `exposure`; drivers `enso, irradiance`). This is why the taxonomy exists — it is the discovery index, not decoration.
 
 `find_methodology` is the **single authoritative discovery path**: when methodology is delivered as a Claude Agent Skill, the skill is loaded via the `find_methodology` / `get_methodology` result — not by relying on (or racing) the client's native description-matching. Where that discovery logic *lives* is Open Decision 2.
 
@@ -190,7 +205,7 @@ In production these become *enforced* gates and a *trace* attached to each insig
 | Data tools (MCP) | ✅ live | wire the `iso` filter (logged gap) / add region resolution |
 | Source repo + taxonomy registry | ✅ built | — |
 | One validated skill (ENSO) | ✅ test 001 PASS | — |
-| Skill **format** (`SKILL.md` from a package) | ☐ design | author the ENSO skill bundle |
+| Skill **format** (`SKILL.md` from a package) | ✅ ENSO `SKILL.md` authored | generalize: a build script that compiles `SKILL.md` from any package |
 | Discovery tool (`find_methodology`) | ☐ design | spec it over the registry |
 | Publish step (repo → served) | ☐ design | minimal: a build script that emits skill bundles + a registry index |
 | Eval harness (examples/test_runs → CI) | ☐ design | turn golden outputs into pass/fail checks |
@@ -210,7 +225,7 @@ In production these become *enforced* gates and a *trace* attached to each insig
 3. **State freshness enforcement**: how a skill guarantees the external state (NOAA) was pulled within an acceptable window before it renders.
 4. **Skill versioning & coherence**: how `resource.yml.version` + eval suite gate a re-publish — *and* how a single publish stamps every derived artifact (skill bundle, registry index entry, enforced gate set) with that version, so a session can confirm the loaded prompt, the discovery entry, and the gates all came from one `resource.yml`. (Make publish atomic per resource; have `get_methodology` and the insight trace echo the version.)
 5. **Discovery index at scale**: the taxonomy is a flat tag rank with one skill today; revisit before ~15–20 skills. (a) a controlled `drivers` vocabulary + synonym/alias map (e.g. `enso ← el_nino, la_nina, oni`) vs. fuzzy query matching — `drivers` is currently free-form, which fragments across authors; (b) auto-bind the single top match (as §4/§8 show) vs. return ranked top-N for the session to choose; (c) tie-break order (exact-driver > family > actor) + zero-match behavior.
-6. **Canonical slug**: reconcile `resource.yml.identity.slug` vs the folder name (today `el_nino_enso_exposure` vs `el_nino_enso`), pick one canonical value, align all surfaces (folder, registry README, package files, this doc), and assert `folder == identity.slug` at publish.
+6. **Canonical slug** — RESOLVED 2026-06-05: canonical = `el_nino_enso` (folder == `identity.slug`); the descriptive "exposure" lives in `title` + the `family` tag, not the slug. All surfaces aligned. Remaining: the publish step should *assert* `folder == identity.slug` (and revisit if one phenomenon ever needs multiple family-skills — see #5).
 7. **Catalog maintainership & deprecation**: who owns the served catalog and approves a publish, and how a skill is marked deprecated/unpublished so it stops surfacing in `find_methodology`.
 
 ---

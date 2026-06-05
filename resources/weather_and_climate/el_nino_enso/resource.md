@@ -2,7 +2,7 @@
 
 > **Status**: v0 resource, deepened 2026-06-05.
 >
-> **Resource slug**: `el_nino_enso_exposure`.
+> **Resource slug**: `el_nino_enso` (Skill `name`: `el-nino-enso`).
 >
 > **Purpose**: guide a model through **directional exposure** analysis connecting ENSO state/forecast to renewable assets, regions, owners, offtakers, and actor relevance — disciplined, source-grounded, and caveated.
 

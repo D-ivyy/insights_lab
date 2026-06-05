@@ -29,6 +29,7 @@ If CAISO data/tool access is insufficient, use another region/market that the MC
 
 | File | Purpose |
 |---|---|
+| `SKILL.md` | **Published skill** — the loadable Claude Agent Skill (frontmatter `name`+`description` + method body + bundled refs) |
 | `resource.md` | Human-readable methodology (the method) |
 | `resource.yml` | Structured operational fields + taxonomy |
 | `knowledge.md` | **Domain reference** — ENSO mechanism, measurement, teleconnections by region (cited) |

@@ -2,7 +2,7 @@
 
 > **Status**: validated test output (produced in `test_runs/test_run_001.md`, 2026-06-05).
 >
-> **Methodology**: `el_nino_enso_exposure` · **Knowledge**: `knowledge.md` · **As-of**: 2026-06-05.
+> **Methodology**: `el_nino_enso` · **Knowledge**: `knowledge.md` · **As-of**: 2026-06-05.
 
 ## Claim
 
