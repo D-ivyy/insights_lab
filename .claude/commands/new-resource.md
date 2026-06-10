@@ -28,6 +28,7 @@ templates/        the scaffold             PHASE 6 publish · 7 register
 - Pick the **analysis family** (`docs/02`: exposure · performance · commercial · development_risk · portfolio_strategy · market_context · event_translation).
 - Pick the **driver + domain**. Reuse an existing `domain/` folder if the driver fits; create a new domain only for a genuinely new external driver (`resources/README.md`).
 - Decide the **slug** (`snake_case`) and Skill **name** (`kebab-case`). Folder name MUST equal `resource.yml.identity.slug`.
+- **Prior-art check**: scan `resources/README.md` (does a sibling resource already overlap this question/driver?) and `docs/09_mcp_roadmap.md` (is there a known tool gap that blocks this driver? if so, plan the workaround now, before you scaffold).
 - **P1 check** (`docs/08`): name what is *stable* here (the claim grammar, blocked_claims, taxonomy) vs *volatile* (model, phrasing, plumbing). You are authoring the stable layer.
 
 ## PHASE 1 — SCAFFOLD (clean copy of the full template set)
@@ -62,6 +63,7 @@ mcp_test_run.template.md           → test_runs/test_run_001.md
 ## PHASE 4 — GROUND IN REALITY (no invented examples)
 
 - Exercise the **InfraSure MCP data tools live** for the scope, and pull the **external state live**. Fill `examples/applied_insight_001.md` with **real** ids / numbers / `as_of` — never placeholders.
+- Shape the example's **form** (structure, framing) against `resources/_reference/` exemplars — form only; every fact stays grounded in live tool output (the corpus is quarantined from grounding).
 - Hit an empty result or an unwired filter? That is a tool gap: **log it to `docs/09_mcp_roadmap.md`** (`gap · workaround · roadmap`), then use the workaround (e.g. a `state=` proxy) and keep moving.
 
 ## PHASE 5 — TEST LOOP (it is a loop, not one-shot — `docs/05`, `docs/08` P4)
@@ -70,7 +72,15 @@ mcp_test_run.template.md           → test_runs/test_run_001.md
 - **Save the full transcript** (raw source — `docs/08` P3), then resolve it into `test_runs/test_run_001.md`: accepted / rejected claims, failures by taxonomy, fixes. **Extract** the prompting moves + fail→fix pairs (this is the process data that sharpens the next resource).
 - Review every claim against `blocked_claims` and the gate: source ref present? confidence capped? caveats attached? **no `$/MWh`, no plant-level forecast, no causal-where-directional**?
 
-## PHASE 6 — PUBLISH THE SKILL (→ `SKILL.md`)
+---
+
+**STOP — human checkpoint (do not cross this line in one pass).** Phases 0–5 produce and validate the insight; 6–7 author and register the skill. A human reviews the Phase 5 test output (accepted / blocked claims + the saved transcript) and approves before you continue. This *is* P4 (`docs/08`): the loop and its checkpoint are the product, not a step to sprint past.
+
+---
+
+## PHASE 6 — AUTHOR THE SKILL (→ `SKILL.md`)
+
+> v0 has **no serving / publish step** (the publish step + discovery tool are paused, `docs/06` §11). This phase *authors* `SKILL.md`; Phase 7 *registers* it in the repo — nothing auto-serves it yet.
 
 - Frontmatter: `name` (kebab) + `description` (**what it does AND when to use it** — this is the discovery match-text, ≤1024 chars). Body = the method. Bundled refs = `knowledge.md`, the example, `data_requirements.md` (`docs/07`).
 - Optional: hand to Anthropic's **skill-creator** to optimize the description for triggering + run eval/variance. Our domain rubric = the gate above; skill-creator supplies the generic runner.

@@ -109,7 +109,7 @@ Real: aggregate(plants, group_by=state, metric=total_capacity, filter=fuel:SUN) 
 Claim type: directional exposure. Block exact LMP / plant-output forecasts.
 ```
 
-This is the v0 family — see `resources/weather_and_climate/el_nino_enso/`.
+This is the v0 family — see `resources/weather_and_climate/el_nino_enso/`. (The families are **orthogonal to the use-case buckets** in `docs/11`: Exposure can run bottom-up — asset → phenomenon — *or* top-down — phenomenon → assets.)
 
 ### Performance
 

@@ -44,4 +44,4 @@ The MCP surface is a **floor, not a ceiling**. Whenever you hit "this call / fie
 
 ## Docs Index
 
-`README.md` (map + read order) · `docs/00` brief · `docs/01` scope · `docs/02` analysis families · `docs/03` resource standard · `docs/04` data map · `docs/05` test protocol · `docs/06` architecture · `docs/07` discovery spec · `docs/08` design principles · `docs/09` **MCP roadmap ledger** · `docs/learning/` onboarding · `resources/README.md` registry · `resources/_reference/` exemplars · `resources/weather_and_climate/el_nino_enso/` first skill · `CLAUDE.md` full version.
+`README.md` (map + read order) · `docs/00` brief · `docs/01` scope · `docs/02` analysis families · `docs/03` resource standard · `docs/04` data map · `docs/05` test protocol · `docs/06` architecture · `docs/07` discovery spec · `docs/08` design principles · `docs/09` **MCP roadmap ledger** · `docs/10` command toolchain · `docs/11` use cases (2 buckets + validation) · `docs/learning/` onboarding · `resources/README.md` registry · `resources/_reference/` exemplars · `resources/weather_and_climate/el_nino_enso/` first skill · `CLAUDE.md` full version.

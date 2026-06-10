@@ -6,7 +6,7 @@
 >
 > **V0 outcome**: one El Nino / ENSO exposure methodology package, one prompt projection, one data-requirements map, one manual MCP/Claude test run (001 PASS), one applied-insight draft, and one learning/gap log.
 >
-> **Since 001 PASS** the methodology layer was hardened (not extended into code): governing principles (`docs/08`), a living MCP feedback ledger (`docs/09`), a visual fundamentals map (`docs/learning/00`), agent instructions (`CLAUDE.md` / `AGENTS.md`), and a quarantined exemplar corpus (`resources/_reference/`). The publish step, discovery tool, and eval harness remain deliberately paused.
+> **Since 001 PASS** the methodology layer was hardened (not extended into code): governing principles (`docs/08`), a living MCP feedback ledger (`docs/09`), agent instructions (`CLAUDE.md` / `AGENTS.md`), and a quarantined exemplar corpus (`resources/_reference/`); the project brief (`docs/00`) was made the single visual overview of the whole project. The publish step, discovery tool, and eval harness remain deliberately paused.
 
 InfraSure Insights is not a news pipeline and not a generic content project. It is an applied intelligence layer:
 
@@ -35,6 +35,7 @@ insights_lab/
 ├── README.md
 ├── CLAUDE.md                   # agent instructions (full) — how to work here, conventions, don'ts
 ├── AGENTS.md                   # agent instructions (lean, vendor-neutral cut of CLAUDE.md)
+├── .claude/commands/           # slash commands: /recap · /new-resource · /test-resource · /extract  (.cursor/ symlinks to here)
 ├── docs/
 │   ├── 00_project_brief.md
 │   ├── 01_scope_v0.md
@@ -46,6 +47,8 @@ insights_lab/
 │   ├── 07_discovery_spec.md
 │   ├── 08_design_principles.md # what stays stable vs swappable; content downstream of insight
 │   ├── 09_mcp_roadmap.md       # living ledger: log MCP tool gaps/ideas here
+│   ├── 10_command_roadmap.md   # the command/skill toolchain (author->test->resolve->gate->render)
+│   ├── 11_use_cases.md         # the 2-bucket use cases (Pillar 3) + the validation method
 │   └── learning/
 ├── resources/
 │   ├── README.md               # methodology registry (domain · family · actor)
@@ -87,7 +90,7 @@ README.md
 For onboarding:
 
 ```text
-docs/learning/00_fundamentals_map.md      <- the whole project, drawn (visual on-ramp)
+docs/00_project_brief.md                  <- the whole-project overview, drawn (start here)
   -> docs/learning/README.md
   -> docs/learning/01_mcp_basics.md
   -> docs/learning/02_infrasure_data_substrate.md
@@ -137,4 +140,4 @@ Success means the resource can be pasted or loaded into a Claude/MCP session and
 
 ## Current Task
 
-V0 is validated (Test Run 001 PASS) and the methodology layer is hardened with principles (`08`), the MCP ledger (`09`), the fundamentals map (`learning/00`), and agent files. The next concrete move is a **second ENSO test run done the new way** — save the full transcript, then resolve it into a `test_run` + extract the prompting moves / fail→fix pairs — to produce the first piece of *process data*. The publish step, discovery tool, and eval harness stay paused until that process loop has been exercised at least once.
+V0 is validated (Test Run 001 PASS) and the methodology layer is hardened with principles (`08`), the MCP ledger (`09`), the command toolchain (`10`), and agent files; the project brief (`00`) is now the single visual overview. The next concrete move is a **second ENSO test run done the new way** — save the full transcript, then resolve it into a `test_run` + extract the prompting moves / fail→fix pairs — to produce the first piece of *process data*. The publish step, discovery tool, and eval harness stay paused until that process loop has been exercised at least once.

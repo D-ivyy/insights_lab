@@ -26,6 +26,8 @@ There is **no build system**. The operational loop is the manual MCP/Claude test
 
 Full protocol: `docs/05_mcp_test_protocol.md`. Onboarding fundamentals: `docs/learning/`.
 
+This loop is packaged as slash commands (thin conductors over the canon, not restatements — `docs/10_command_roadmap.md`): **`/new-resource`** (author), **`/test-resource`** (run the test loop on an existing slug), **`/extract`** (resolve a saved transcript into a `test_run` + ledger/learning), plus **`/recap`** (ASCII structural recap + honest friction). Tier-2 `/gate-check` and `/render` are planned.
+
 ## The MCP Feedback Loop (standing instruction)
 
 **The MCP surface is a floor, not a ceiling.** As you author or test, you *will* hit "this call / field / filter would be super useful." When you do:
@@ -86,6 +88,8 @@ The load-bearing seam is `resource.yml` (taxonomy → discovery, prompt sections
 | `docs/07_discovery_spec.md` | `find_methodology` / `get_methodology` contract |
 | `docs/08_design_principles.md` | Stable vs volatile · content downstream · process-data laws · iteration · no-mush |
 | `docs/09_mcp_roadmap.md` | **The MCP feedback ledger** — log tool gaps/ideas here |
+| `docs/10_command_roadmap.md` | The command/skill toolchain (author → test → resolve → gate → render) |
+| `docs/11_use_cases.md` | The 2-bucket use cases (Pillar 3, bottom-up/top-down × audience) + the validation method |
 | `docs/learning/` | Onboarding: MCP basics, the substrate, methodology resources, prompt projection |
 | `resources/README.md` | Methodology registry (domain · family · actor) |
 | `resources/_reference/` | Exemplar corpus (form, not facts) |

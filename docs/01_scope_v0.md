@@ -4,6 +4,50 @@
 >
 > **Goal**: define exactly what the first InfraSure Insights team deliverable is and what it is not.
 
+## The Whole Picture — And The V0 Slice
+
+Before the V0 boundary, here is the whole project in four views, so the scope reads as a deliberate *subset* of it. (Detail behind these: `11_use_cases.md`; pillar overview: `00_project_brief.md`.)
+
+```text
+VIEW 1 · the 3 pillars
+  PILLAR 1 · MCP           PILLAR 2 · REFERENCE / KB      PILLAR 3 · COMBINED AGENT
+  data tools               methodology + knowledge         1 + 2 + agentic architecture
+  ✅ built                 ✅ initial build                 ◀── the big open work
+        └──── REFINE + VALIDATE ──┘                              DEFINE THE USE CASE (views 3–4)
+```
+
+```text
+VIEW 2 · pillars 1 & 2 — two jobs
+  REFINE   (only via testing + rigorous update)   MCP→what data should calls return? (docs/09)
+                                                  REFERENCE→prompt fixes? (test/extract 05·10)
+  VALIDATE (proof-of-value A/B)
+     a defined use case ──┬──► vanilla cloud LLM + web      → satisfies it?    → tool adds NO value
+                          └──► + InfraSure MCP / reference   → only this works? → MOAT PROVEN
+```
+
+```text
+VIEW 3 · pillar 3 — the two-bucket use case (direction × audience)
+                     BUCKET 1 · BOTTOM-UP              BUCKET 2 · TOP-DOWN
+                     anchor = a SITE / PORTFOLIO       anchor = a PHENOMENON / news
+                     asset ──► phenomenon effect       phenomenon ──► assets / regions
+   INTERNAL (first)  team exposure / risk read         internal scan of what's affected
+   CUSTOMER/PUBLIC   account brief for an owner         blog / LinkedIn insight post
+   connection: top-down surfaces assets ─► drill each bottom-up ─► aggregates back up (one cycle)
+```
+
+```text
+VIEW 4 · reconciliation with the meet-thread "3 prompting buckets"
+   Bucket 1 · bottom-up = #1 single-user query   ·   Bucket 2 · top-down = #2 internal vlog
+   #3 precise/structured = a TESTING LENS (not a 3rd use case)
+```
+
+```text
+   ◀── V0 IS THIS SLICE ──────────────────────────────────────────────────────────────
+       Pillar 3 · BUCKET 1 (bottom-up) · INTERNAL-team audience
+       · one resource (ENSO) · one region / one asset class · one manual test
+       (Bucket 2 top-down, customer/public renderings, and multi-resource are POST-V0)
+```
+
 ## Scope Statement
 
 V0 creates one methodology-backed insight package for:

@@ -8,9 +8,10 @@ Learning lives under `docs/learning/` so the top-level repo stays scalable for f
 
 ## What Each Doc Delivers
 
+For the whole-project overview (goal · architecture · scope · principles, drawn), read `docs/00_project_brief.md` first — that is project canon, not onboarding. This track is purely the fundamentals you need to *build and test* resources.
+
 | Doc | The question it answers | Grounded in |
 |---|---|---|
-| `00_fundamentals_map.md` | What is this whole project — goal, architecture, scope, fundamentals — at a glance? | the visual on-ramp: every concept drawn in ASCII, pointing into the prose docs |
 | `01_mcp_basics.md` | What are the InfraSure tools, what do they return, and how do I verify Claude used them? | live 12-tool surface, real `search_plants` / `get_plant` I/O |
 | `02_infrasure_data_substrate.md` | What does the data contain, and which of it can *ground* a claim vs. only *frame* or *route* it? | real `get_plant(57993)` record + `aggregate` output |
 | `03_methodology_resources.md` | What am I building — and why does each field of the resource contract exist? | the ENSO resource, traced end-to-end |
@@ -19,8 +20,8 @@ Learning lives under `docs/learning/` so the top-level repo stays scalable for f
 ## Read Order
 
 ```text
-00_fundamentals_map.md          <- start here: the whole project, drawn
-  -> 01_mcp_basics.md
+(docs/00_project_brief.md          <- the whole-project overview, if you haven't read it)
+01_mcp_basics.md                   <- start the onboarding track here
   -> 02_infrasure_data_substrate.md
   -> 03_methodology_resources.md
   -> 04_prompt_projection.md
